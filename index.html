@@ -1,242 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Crypto Support Funnel System</title>
+<title>Crypto Support Funnel</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #070b14;
-  color: #fff;
-}
+body { margin:0; font-family:Arial; background:#070b14; color:white; }
 
-/* URGENCY */
 .urgency {
-  background: #ef4444;
-  text-align: center;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 13px;
+  background:#ef4444;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
 }
 
-/* NAV STEP */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  background: #0b1220;
-  padding: 10px;
-}
-
-.nav button {
-  background: #121a2f;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* SECTIONS */
-.section {
-  display: none;
-  padding: 25px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.active {
-  display: block;
-}
-
-/* HERO */
 .hero {
-  text-align: center;
-  padding: 40px 20px;
+  padding:50px 20px;
+  text-align:center;
   background: radial-gradient(circle at top, #1a2544, #070b14);
 }
 
 .cta {
-  display: inline-block;
-  margin-top: 18px;
-  padding: 14px 22px;
-  background: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
+  display:inline-block;
+  margin-top:15px;
+  padding:14px 20px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
 }
 
-/* CARDS */
+.section {
+  padding:25px 20px;
+  max-width:900px;
+  margin:auto;
+}
+
 .card {
-  background: #121a2f;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border-left: 3px solid #2dd4bf;
+  background:#121a2f;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
 }
 
-/* SIGNALS */
-.signal {
-  background: #0b1220;
-  padding: 15px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid #1e293b;
-}
-
-.green { color: #22c55e; }
-.red { color: #ef4444; }
-
-/* SLIDER */
-.slide {
-  display: none;
-}
-
-.slide.active {
-  display: block;
-}
-
-/* FLOATING WHATSAPP */
 .floating {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  padding: 14px 16px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  z-index: 999;
-}
-
-/* SMALL TEXT */
-.small {
-  color: #94a3b8;
-  font-size: 12px;
-  text-align: center;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:14px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- URGENCY BAR -->
 <div class="urgency">
 ⚠ Limited crypto onboarding slots available today
 </div>
 
-<!-- NAV -->
-<div class="nav">
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('services')">Services</button>
-  <button onclick="showSection('close')">Start</button>
+<!-- VARIANT A -->
+<div id="A">
+  <div class="hero">
+    <h2>Crypto Wallet & Trading Support</h2>
+    <p>Secure setup and guided trading</p>
+    <a class="cta" href="#" onclick="sendToWhatsApp('general')">Start Now</a>
+  </div>
 </div>
 
-<!-- HOME -->
-<div id="home" class="section active">
-
+<!-- VARIANT B -->
+<div id="B" style="display:none;">
   <div class="hero">
-    <h2>Crypto Trading & Wallet Support</h2>
-    <p>Secure setup, trading clarity & exchange onboarding</p>
-
-    <a class="cta" href="#" onclick="trackClick()">Start Journey</a>
+    <h2>Elite Crypto Support System</h2>
+    <p>Fast setup, pro-level guidance</p>
+    <a class="cta" href="#" onclick="sendToWhatsApp('general')">Get Access</a>
   </div>
-
-  <div class="signal">
-    BTC/USDT: <span class="green">Momentum building</span>
-  </div>
-
 </div>
 
 <!-- SERVICES -->
-<div id="services" class="section">
+<div class="section">
+  <h2>Choose Service</h2>
 
-  <h2>Our Services</h2>
-
-  <div class="card">Wallet Setup — secure crypto onboarding</div>
-  <div class="card">Exchange Help — Binance / OKX support</div>
-  <div class="card">Trading Guidance — structured market clarity</div>
-
-  <a class="cta" href="#" onclick="showSection('close')">Continue</a>
-
-</div>
-
-<!-- CLOSE -->
-<div id="close" class="section">
-
-  <h2>Ready to Start?</h2>
-
-  <p>Get direct WhatsApp support now</p>
-
-  <a class="cta" href="https://wa.me/15812923451" onclick="trackClick()">Chat on WhatsApp</a>
-
-  <p class="small">
-    Fast response • Beginner friendly • Secure guidance
-  </p>
-
-</div>
-
-<!-- TESTIMONIAL SLIDER -->
-<div class="section" style="display:block;">
-
-  <h2>Client Feedback</h2>
-
-  <div class="slide active">
-    <div class="card">“Very clear wallet setup guidance.”</div>
+  <div class="card">
+    Wallet Setup
+    <br><br>
+    <a class="cta" href="#" onclick="sendToWhatsApp('Wallet Setup')">Select</a>
   </div>
 
-  <div class="slide">
-    <div class="card">“Finally understood exchanges properly.”</div>
+  <div class="card">
+    Exchange Guidance
+    <br><br>
+    <a class="cta" href="#" onclick="sendToWhatsApp('Exchange Guidance')">Select</a>
   </div>
 
-  <div class="slide">
-    <div class="card">“Trading support is simple and effective.”</div>
+  <div class="card">
+    Trading Support
+    <br><br>
+    <a class="cta" href="#" onclick="sendToWhatsApp('Trading Support')">Select</a>
   </div>
 
 </div>
 
-<!-- FLOATING WHATSAPP -->
-<a class="floating" href="https://wa.me/15812923451" onclick="trackClick()">
+<!-- FLOATING BUTTON -->
+<a class="floating" href="#" onclick="sendToWhatsApp('general')">
 WhatsApp
 </a>
 
-<!-- SCRIPT -->
 <script>
 
-let clicks = localStorage.getItem("wa_clicks") || 0;
-
-function trackClick() {
-  clicks++;
-  localStorage.setItem("wa_clicks", clicks);
-  console.log("Clicks:", clicks);
+/* STORAGE */
+function getData() {
+  return JSON.parse(localStorage.getItem("funnel")) || { variant:null };
+}
+function saveData(d) {
+  localStorage.setItem("funnel", JSON.stringify(d));
 }
 
-/* SECTION NAV */
-function showSection(id) {
-  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+/* SOURCE */
+function getSource() {
+  const p = new URLSearchParams(window.location.search);
+  return p.get("src") || "direct";
 }
 
-/* SLIDER */
-let current = 0;
-const slides = document.querySelectorAll(".slide");
-
-function slider() {
-  slides.forEach(s => s.classList.remove("active"));
-  slides[current].classList.add("active");
-
-  current++;
-  if (current >= slides.length) current = 0;
-
-  setTimeout(slider, 3000);
+/* A/B ASSIGN */
+function assignVariant() {
+  let d = getData();
+  if (!d.variant) {
+    d.variant = Math.random() < 0.5 ? "A" : "B";
+    saveData(d);
+  }
+  return d.variant;
 }
 
-slider();
+/* RENDER */
+function render() {
+  let v = assignVariant();
+  document.getElementById("A").style.display = v === "A" ? "block" : "none";
+  document.getElementById("B").style.display = v === "B" ? "block" : "none";
+}
+render();
+
+/* WHATSAPP LEAD CAPTURE */
+function sendToWhatsApp(service) {
+  let d = getData();
+  let variant = d.variant || "unknown";
+  let source = getSource();
+
+  let msg = `Hello, I'm interested in crypto support.
+
+Service: ${service}
+Source: ${source}
+Variant: ${variant}
+
+Please guide me.`;
+
+  let url = "https://wa.me/15812923451?text=" + encodeURIComponent(msg);
+
+  window.open(url, "_blank");
+}
 
 </script>
 
