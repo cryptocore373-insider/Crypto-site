@@ -1,169 +1,307 @@
+nano services.html
+nano portfolio.html
+nano close.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Crypto Support Funnel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Advisory System</title>
 
 <style>
-body { margin:0; font-family:Arial; background:#070b14; color:white; }
-
-.urgency {
-  background:#ef4444;
-  text-align:center;
-  padding:10px;
-  font-size:13px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #070b14;
+  color: #e5e7eb;
 }
 
-.hero {
-  padding:50px 20px;
-  text-align:center;
-  background: radial-gradient(circle at top, #1a2544, #070b14);
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,215,0,0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.container {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #b6c2d9;
+  line-height: 1.5;
 }
 
 .cta {
-  display:inline-block;
-  margin-top:15px;
-  padding:14px 20px;
-  background:#25D366;
-  color:white;
-  text-decoration:none;
-  border-radius:8px;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 18px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
 }
 
 .section {
-  padding:25px 20px;
-  max-width:900px;
-  margin:auto;
+  margin-top: 40px;
 }
 
-.card {
-  background:#121a2f;
-  padding:15px;
-  margin:10px 0;
-  border-radius:10px;
-}
-
-.floating {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  padding:14px;
-  border-radius:50px;
-  color:white;
-  text-decoration:none;
+.small {
+  font-size: 13px;
+  color: #94a3b8;
 }
 </style>
 </head>
 
 <body>
 
-<div class="urgency">
-⚠ Limited crypto onboarding slots available today
-</div>
+<div class="container">
 
-<!-- VARIANT A -->
-<div id="A">
-  <div class="hero">
-    <h2>Crypto Wallet & Trading Support</h2>
-    <p>Secure setup and guided trading</p>
-    <a class="cta" href="#" onclick="sendToWhatsApp('general')">Start Now</a>
-  </div>
-</div>
+<h1>Crypto Guidance & Wallet Setup System</h1>
 
-<!-- VARIANT B -->
-<div id="B" style="display:none;">
-  <div class="hero">
-    <h2>Elite Crypto Support System</h2>
-    <p>Fast setup, pro-level guidance</p>
-    <a class="cta" href="#" onclick="sendToWhatsApp('general')">Get Access</a>
-  </div>
-</div>
+<p>
+Structured crypto onboarding, wallet setup, and trading clarity for beginners and intermediate users.
+</p>
 
-<!-- SERVICES -->
+<a class="cta" href="services.html?src=entry">Explore Services</a>
+
 <div class="section">
-  <h2>Choose Service</h2>
-
-  <div class="card">
-    Wallet Setup
-    <br><br>
-    <a class="cta" href="#" onclick="sendToWhatsApp('Wallet Setup')">Select</a>
-  </div>
-
-  <div class="card">
-    Exchange Guidance
-    <br><br>
-    <a class="cta" href="#" onclick="sendToWhatsApp('Exchange Guidance')">Select</a>
-  </div>
-
-  <div class="card">
-    Trading Support
-    <br><br>
-    <a class="cta" href="#" onclick="sendToWhatsApp('Trading Support')">Select</a>
-  </div>
-
+  <h3>Why structure matters</h3>
+  <p>
+  Most losses in crypto come from poor setup and lack of guidance — not trading itself.
+  </p>
 </div>
 
-<!-- FLOATING BUTTON -->
-<a class="floating" href="#" onclick="sendToWhatsApp('general')">
-WhatsApp
-</a>
+<p class="small">Secure system • Private guidance • Step-by-step support</p>
+
+</div>
 
 <script>
+let heat = { clicks:0, scroll:0 };
 
-/* STORAGE */
-function getData() {
-  return JSON.parse(localStorage.getItem("funnel")) || { variant:null };
-}
-function saveData(d) {
-  localStorage.setItem("funnel", JSON.stringify(d));
-}
+document.addEventListener("click", () => {
+  heat.clicks++;
+  localStorage.setItem("heat_index", JSON.stringify(heat));
+});
 
-/* SOURCE */
-function getSource() {
-  const p = new URLSearchParams(window.location.search);
-  return p.get("src") || "direct";
-}
-
-/* A/B ASSIGN */
-function assignVariant() {
-  let d = getData();
-  if (!d.variant) {
-    d.variant = Math.random() < 0.5 ? "A" : "B";
-    saveData(d);
-  }
-  return d.variant;
-}
-
-/* RENDER */
-function render() {
-  let v = assignVariant();
-  document.getElementById("A").style.display = v === "A" ? "block" : "none";
-  document.getElementById("B").style.display = v === "B" ? "block" : "none";
-}
-render();
-
-/* WHATSAPP LEAD CAPTURE */
-function sendToWhatsApp(service) {
-  let d = getData();
-  let variant = d.variant || "unknown";
-  let source = getSource();
-
-  let msg = `Hello, I'm interested in crypto support.
-
-Service: ${service}
-Source: ${source}
-Variant: ${variant}
-
-Please guide me.`;
-
-  let url = "https://wa.me/15812923451?text=" + encodeURIComponent(msg);
-
-  window.open(url, "_blank");
-}
-
+window.addEventListener("scroll", () => {
+  let s = window.scrollY / document.body.scrollHeight * 100;
+  heat.scroll = Math.max(heat.scroll, s);
+  localStorage.setItem("heat_index", JSON.stringify(heat));
+});
 </script>
 
 </body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services</title>
+
+<style>
+body {
+  background:#070b14;
+  color:#e5e7eb;
+  font-family:Arial;
+  margin:0;
+}
+
+.container {
+  padding:40px 20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.card {
+  background:#0f172a;
+  padding:16px;
+  border-radius:10px;
+  margin-bottom:15px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.cta {
+  background:#25D366;
+  color:white;
+  padding:10px 14px;
+  display:inline-block;
+  text-decoration:none;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Choose Your Support Plan</h2>
+
+<div class="card">
+<h3>Starter</h3>
+<p>Wallet setup + basic guidance</p>
+<a class="cta" href="portfolio.html?plan=starter">Continue</a>
+</div>
+
+<div class="card">
+<h3>Standard</h3>
+<p>Full setup + trading guidance</p>
+<a class="cta" href="portfolio.html?plan=standard">Continue</a>
+</div>
+
+<div class="card">
+<h3>Premium</h3>
+<p>Advanced support + priority help</p>
+<a class="cta" href="portfolio.html?plan=premium">Continue</a>
+</div>
+
+</div>
+
+<script>
+let heat = { clicks:0, scroll:0 };
+
+document.addEventListener("click", () => {
+  heat.clicks++;
+  localStorage.setItem("heat_services", JSON.stringify(heat));
+});
+
+window.addEventListener("scroll", () => {
+  let s = window.scrollY / document.body.scrollHeight * 100;
+  heat.scroll = Math.max(heat.scroll, s);
+  localStorage.setItem("heat_services", JSON.stringify(heat));
+});
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proof</title>
+
+<style>
+body {
+  background:#070b14;
+  color:#e5e7eb;
+  font-family:Arial;
+  margin:0;
+}
+
+.container {
+  padding:40px 20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.box {
+  background:#0f172a;
+  padding:15px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.cta {
+  background:#25D366;
+  padding:12px 18px;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  display:inline-block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Client Feedback</h2>
+
+<div class="box">“Helped me set up wallet correctly”</div>
+<div class="box">“Clear trading guidance”</div>
+<div class="box">“Simple and structured system”</div>
+
+<a class="cta" href="close.html">Continue</a>
+
+</div>
+
+<script>
+let heat = { clicks:0, scroll:0 };
+
+document.addEventListener("click", () => {
+  heat.clicks++;
+  localStorage.setItem("heat_portfolio", JSON.stringify(heat));
+});
+
+window.addEventListener("scroll", () => {
+  let s = window.scrollY / document.body.scrollHeight * 100;
+  heat.scroll = Math.max(heat.scroll, s);
+  localStorage.setItem("heat_portfolio", JSON.stringify(heat));
+});
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start</title>
+
+<style>
+body {
+  background:#070b14;
+  color:#e5e7eb;
+  font-family:Arial;
+  text-align:center;
+  padding:60px 20px;
+}
+
+button {
+  background:#25D366;
+  color:white;
+  border:none;
+  padding:14px 20px;
+  border-radius:8px;
+}
+</style>
+
+<script>
+function send() {
+  let params = new URLSearchParams(window.location.search);
+  let plan = params.get("plan") || "general";
+  let src = params.get("src") || "direct";
+
+  let msg = `Hi, I want crypto support.
+
+Plan: ${plan}
+Source: ${src}`;
+
+  window.location.href =
+  "https://wa.me/15812923451?text=" + encodeURIComponent(msg);
+}
+</script>
+
+</head>
+
+<body>
+
+<p>Click below to begin</p>
+
+<button onclick="send()">Start on WhatsApp</button>
+
+</body>
 </html>
+
+
